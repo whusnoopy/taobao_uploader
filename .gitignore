@@ -58,3 +58,5 @@ target/
 
 # Crawled Images
 img/*.jpg
+
+.vscode

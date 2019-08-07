@@ -1,3 +1,3 @@
-pyquery==1.2.9
-requests==2.9.1
-taobaopy==4.2.2
+pyquery==1.4.0
+requests==2.22.0
+taobaopy==6.0.0
