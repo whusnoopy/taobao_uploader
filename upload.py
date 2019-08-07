@@ -1,10 +1,12 @@
 # coding: utf8
 
 import json
+import logging
 
 from taobaopy.taobao import TaoBaoAPIError
 
-from logger import log
+
+logger = logging.getLogger(__name__)
 
 
 def upload(top, config, title=None, desc=None, img_path=None):
@@ -19,9 +21,9 @@ def upload(top, config, title=None, desc=None, img_path=None):
 
     try:
         r = top.item_add(session=config.token, **item_kws)
-        log.debug("upload response:\n%s", json.dumps(r, indent=2))
+        logger.debug("upload response:\n%s", json.dumps(r, indent=2))
     except TaoBaoAPIError, e:
-        log.debug("upload failed: %s|%s", e.msg, e.sub_msg)
+        logger.debug("upload failed: %s|%s", e.msg, e.sub_msg)
         return 1
 
     return 0

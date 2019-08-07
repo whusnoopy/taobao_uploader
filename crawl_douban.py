@@ -1,11 +1,13 @@
 # coding: utf8
 
+import logging
 import os
 
 import requests
 from pyquery import PyQuery
 
-from logger import log
+
+logger = logging.getLogger(__name__)
 
 
 def crawl_douban(url, img_dir="img"):
@@ -17,7 +19,7 @@ def crawl_douban(url, img_dir="img"):
     req = requests.get(url)
     pq = PyQuery(req.text)
 
-    log.debug("fetch %s success", url)
+    logger.debug("fetch %s success", url)
 
     items = pq(".article dl")
     for item in items.items():
@@ -33,6 +35,6 @@ def crawl_douban(url, img_dir="img"):
 
         book_list.append(dict(title=title, desc=desc, img_path=img_path))
 
-        log.debug("crawled\n  %s\n    %s\n    %s", title, desc, img_path)
+        logger.debug("crawled\n  %s\n    %s\n    %s", title, desc, img_path)
 
     return book_list

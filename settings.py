@@ -1,10 +1,36 @@
 # coding: utf8
+
+import logging
+import logging.config
 import sys
 reload(sys)
 sys.setdefaultencoding('utf8')  # pylint: disable=no-member
 
 
 class Config(object):
+    LOGGING_CONF = {
+        'version': 1,
+        'disable_existing_loggers': True,
+        'formatters': {
+            'console': {
+                'format': '[%(asctime)s][%(levelname)s][%(filename)s:%(lineno)s][%(funcName)s]: %(message)s'
+            },
+        },
+        'handlers': {
+            'console': {
+                'class': 'logging.StreamHandler',
+                'level': 'DEBUG',
+                'formatter': 'console'
+            },
+        },
+        'loggers': {
+            '': {
+                'handlers': ['console'],
+                'level': 'DEBUG',
+            }
+        }
+    }
+
     key = 'TODO/YOUR_APP_KEY'
     sec = 'TODO/YOUR_APP_SEC'
     domain = 'TODO/YOUR_PROXY_DOMAIN'
@@ -45,6 +71,8 @@ class MyConfig(Config):
 config = None
 if not config:
     config = MyConfig()
+    logging.config.dictConfig(config.LOGGING_CONF)
+
 
 top = None
 if not top:
