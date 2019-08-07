@@ -28,6 +28,14 @@ def get_cid():
 
 
 @click.command()
+def upload_item():
+    """upload an item to taobao with default config"""
+    from upload import upload
+
+    return upload(top, config)
+
+
+@click.command()
 @click.option('-u', '--upload', default=False, is_flag=True,
               help="upload to taobao or just test crawl")
 def run(upload):
@@ -44,6 +52,7 @@ def run(upload):
 
 cli.add_command(get_item)
 cli.add_command(get_cid)
+cli.add_command(upload_item)
 cli.add_command(run)
 
 if __name__ == "__main__":

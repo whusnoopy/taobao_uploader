@@ -1,11 +1,11 @@
 # coding: utf8
 
 import json
-import os
 
-from taobaopy.taobao import TaoBaoAPIClient, TaoBaoAPIError
+from taobaopy.taobao import TaoBaoAPIError
 
 from logger import log
+
 
 def upload(top, config, title=None, desc=None, img_path=None):
     item_kws = dict(config.base_item)
@@ -32,16 +32,3 @@ def upload_list(top, config, up_list):
         upload(top, config, u['title'], u['desc'], u['img_path'])
 
     return 0
-
-
-if __name__ == "__main__":
-    import sys
-    reload(sys)
-    sys.setdefaultencoding('utf8')
-
-    from settings import MyConfig
-
-    config = MyConfig()
-    top = TaoBaoAPIClient(config.key, config.sec, domain=config.domain)
-
-    sys.exit(upload(top, config))
