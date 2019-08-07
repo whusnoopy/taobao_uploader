@@ -11,6 +11,23 @@ def cli():
 
 
 @click.command()
+@click.option('--num_iid', type=int, default=config.num_iid, help="taobao item num_iid to fetch")
+def get_item(num_iid):
+    """fetch item from taobao to show its props"""
+    from utils import get_taobao_item
+
+    return get_taobao_item(top, config, num_iid)
+
+
+@click.command()
+def get_cid():
+    """fetch taobao seller cid"""
+    from utils import get_seller_cid
+
+    return get_seller_cid(top, config)
+
+
+@click.command()
 @click.option('-u', '--upload', default=False, is_flag=True,
               help="upload to taobao or just test crawl")
 def run(upload):
@@ -25,6 +42,8 @@ def run(upload):
     return len(book_list)
 
 
+cli.add_command(get_item)
+cli.add_command(get_cid)
 cli.add_command(run)
 
 if __name__ == "__main__":
