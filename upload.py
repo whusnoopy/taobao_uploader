@@ -9,7 +9,7 @@ from taobaopy.taobao import TaoBaoAPIError
 logger = logging.getLogger(__name__)
 
 
-def upload(top, config, title=None, desc=None, img_path=None):
+def upload_taobao_item(top, config, title=None, desc=None, img_path=None):
     item_kws = dict(config.base_item)
 
     if title:
@@ -29,7 +29,7 @@ def upload(top, config, title=None, desc=None, img_path=None):
     return 0
 
 
-def upload_list(top, config, up_list):
+def upload_list_to_taobao(top, config, up_list):
     for u in up_list:
         upload(top, config, u['title'], u['desc'], u['img_path'])
 

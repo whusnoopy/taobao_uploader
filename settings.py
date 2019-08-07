@@ -50,7 +50,7 @@ class Config(object):
         'desc': '<span style="color:red">红色</span> 测试',
         'location.state': '浙江',
         'location.city': '杭州',
-        'cid': 251103,  # 模玩/动漫/周边/cos/桌游 > 棋牌/桌游 > 其他棋牌/桌面游戏
+        'cid': 50001937,  # 古董/邮币/字画/收藏>>趣味收藏>>其它趣味收集
         'image': open('img/taobao.png', 'rb')
     })
 

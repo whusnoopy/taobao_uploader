@@ -21,11 +21,11 @@ This is an items uploader for Taobao seller, which crawl books or movies from Do
 
     nick = 'TODO/YOUR_NICK'
     token = 'TODO/YOUR_W2_AUTH_CODE'
-    num_iid = 0L # TODO: replace with one of your item num_iid
+    num_iid = 0L # TODO: replace with one of your valid taobao item num_iid
 
 ## 2. Get one of your item, to fill other info in `settings.py`
 
-    python ./utils.py
+    python ./run.py get-item
 
     ...
     {
@@ -39,4 +39,4 @@ This is an items uploader for Taobao seller, which crawl books or movies from Do
     # run.py
     url = "http://www.douban.com/tag/2014/movie?start=15"
 
-    python ./run.py
+    python ./run.py upload-list

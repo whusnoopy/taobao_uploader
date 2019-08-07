@@ -30,22 +30,22 @@ def get_cid():
 @click.command()
 def upload_item():
     """upload an item to taobao with default config"""
-    from upload import upload
+    from upload import upload_taobao_item
 
-    return upload(top, config)
+    return upload_taobao_item(top, config)
 
 
 @click.command()
 @click.option('-u', '--upload', default=False, is_flag=True,
               help="upload to taobao or just test crawl")
-def run(upload):
+def upload_list(upload):
     """crawl books from douban and upload to taobao as items"""
     from crawl_douban import crawl_douban
-    from upload import upload_list
+    from upload import upload_list_to_taobao
 
     book_list = crawl_douban(config.fetch_url)
     if upload:
-        upload_list(top, config, book_list)
+        upload_list_to_taobao(top, config, book_list)
 
     return len(book_list)
 
@@ -53,7 +53,7 @@ def run(upload):
 cli.add_command(get_item)
 cli.add_command(get_cid)
 cli.add_command(upload_item)
-cli.add_command(run)
+cli.add_command(upload_list)
 
 if __name__ == "__main__":
     cli()
