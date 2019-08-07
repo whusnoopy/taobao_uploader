@@ -19,9 +19,9 @@ def upload(top, config, title=None, desc=None, img_path=None):
 
     try:
         r = top.item_add(session=config.token, **item_kws)
-        log.debug("upload response:\n%s" % json.dumps(r, indent=2))
+        log.debug("upload response:\n%s", json.dumps(r, indent=2))
     except TaoBaoAPIError, e:
-        log.debug("upload failed: %s|%s" % (e.msg, e.sub_msg))
+        log.debug("upload failed: %s|%s", e.msg, e.sub_msg)
         return 1
 
     return 0

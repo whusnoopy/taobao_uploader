@@ -46,5 +46,3 @@ if __name__ == "__main__":
 
     if sys.argv[1] == 'cid':
         sys.exit(get_seller_cid(top, config))
-
-    sys.exit(main())

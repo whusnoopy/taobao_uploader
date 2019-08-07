@@ -17,7 +17,7 @@ def crawl_douban(url, img_dir="img"):
     req = requests.get(url)
     pq = PyQuery(req.text)
 
-    log.debug("fetch %s success" % url)
+    log.debug("fetch %s success", url)
 
     items = pq(".article dl")
     for item in items.items():
@@ -33,7 +33,7 @@ def crawl_douban(url, img_dir="img"):
 
         book_list.append(dict(title=title, desc=desc, img_path=img_path))
 
-        log.debug("crawled\n  %s\n    %s\n    %s" % (title, desc, img_path))
+        log.debug("crawled\n  %s\n    %s\n    %s", title, desc, img_path)
 
     return book_list
 
@@ -44,4 +44,4 @@ if __name__ == "__main__":
     sys.setdefaultencoding('utf8')
 
     book_list = crawl_douban("http://www.douban.com/tag/2014/movie?start=15")
-    sys.exit(len(book_list) > 0)
+    sys.exit(len(book_list))
