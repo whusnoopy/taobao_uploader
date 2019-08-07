@@ -1,4 +1,7 @@
 # coding: utf8
+import sys
+reload(sys)
+sys.setdefaultencoding('utf8')  # pylint: disable=no-member
 
 
 class Config(object):
@@ -25,6 +28,8 @@ class Config(object):
         'image': open('img/taobao.png', 'rb')
     })
 
+    fetch_url = "http://www.douban.com/tag/2014/movie?start=15"
+
 
 class MyConfig(Config):
     nick = ''
@@ -35,3 +40,13 @@ class MyConfig(Config):
         # TODO: fill for edit
         self.base_item['seller_cids'] = '0,'
         self.base_item['postage_id'] = 0
+
+
+config = None
+if not config:
+    config = MyConfig()
+
+top = None
+if not top:
+    from taobaopy.taobao import TaoBaoAPIClient
+    top = TaoBaoAPIClient(config.key, config.sec, domain=config.domain)

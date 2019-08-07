@@ -36,12 +36,3 @@ def crawl_douban(url, img_dir="img"):
         log.debug("crawled\n  %s\n    %s\n    %s", title, desc, img_path)
 
     return book_list
-
-
-if __name__ == "__main__":
-    import sys
-    reload(sys)
-    sys.setdefaultencoding('utf8')
-
-    book_list = crawl_douban("http://www.douban.com/tag/2014/movie?start=15")
-    sys.exit(len(book_list))

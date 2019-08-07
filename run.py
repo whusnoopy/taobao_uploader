@@ -1,27 +1,31 @@
 # coding: utf8
 
+import click
 
-def main():
-    from taobaopy.taobao import TaoBaoAPIClient
-    from settings import MyConfig
+from settings import config, top
+
+
+@click.group()
+def cli():
+    pass
+
+
+@click.command()
+@click.option('-u', '--upload', default=False, is_flag=True,
+              help="upload to taobao or just test crawl")
+def run(upload):
+    """crawl books from douban and upload to taobao as items"""
     from crawl_douban import crawl_douban
     from upload import upload_list
 
-    config = MyConfig()
-    top = TaoBaoAPIClient(config.key, config.sec, domain=config.domain)
+    book_list = crawl_douban(config.fetch_url)
+    if upload:
+        upload_list(top, config, book_list)
 
-    url = "http://www.douban.com/tag/2014/movie?start=15"
+    return len(book_list)
 
-    book_list = crawl_douban(url)
 
-    upload_list(top, config, book_list)
-
-    return 0
-
+cli.add_command(run)
 
 if __name__ == "__main__":
-    import sys
-    reload(sys)
-    sys.setdefaultencoding('utf8')
-
-    sys.exit(main())
+    cli()
