@@ -2,15 +2,17 @@
 
 This is an items uploader for Taobao seller, which crawl books or movies from Douban.
 
-# Usage
+> **WARNING**: This tool is outdated. Please use it for study only. 
 
-## 0. Prepare your environment
+## Usage
+
+### 0. Prepare your environment
 
     virtualenv env
     source env/bin/active
     pip install -r requirements.txt
 
-## 1. Fill the api info in `settings.py`
+### 1. Fill the api info in `settings.py`
 
     # settings.py
     key = 'TODO/YOUR_APP_KEY'
@@ -23,7 +25,7 @@ This is an items uploader for Taobao seller, which crawl books or movies from Do
     token = 'TODO/YOUR_W2_AUTH_CODE'
     num_iid = 0L # TODO: replace with one of your valid taobao item num_iid
 
-## 2. Get one of your item, to fill other info in `settings.py`
+### 2. Get one of your item, to fill other info in `settings.py`
 
     python ./run.py get-item
 
